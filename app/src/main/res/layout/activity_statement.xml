@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.StatementActivity">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#00BCD4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back"
+                android:tint="#FFFFFF" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="Statement"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/profileButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/circle_background"
+                android:padding="4dp"
+                android:src="@drawable/ic_profile"
+                android:tint="#FFFFFF" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+
+        <!-- Selected Method Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+
+            android:text="Selected Method"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Personal Information -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvConsolidatedStatement"
+                style="@style/AccountOptionCard"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/white">
+
+                <LinearLayout style="@style/AccountOptionLayout">
+
+                    <FrameLayout style="@style/IconContainer">
+
+                        <ImageView
+                            style="@style/OptionIcon"
+                            android:src="@drawable/ic_users" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/OptionTextContainer">
+
+                        <TextView
+                            style="@style/OptionTitle"
+                            android:text="Consolidated Statement" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ChevronIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <!-- TDS Certificate -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvTDSCertificate"
+                style="@style/AccountOptionCard"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/white">
+
+                <LinearLayout style="@style/AccountOptionLayout">
+
+                    <FrameLayout style="@style/IconContainer">
+
+                        <ImageView
+                            style="@style/OptionIcon"
+                            android:src="@drawable/ic_users" />
+                    </FrameLayout>
+
+                    <LinearLayout style="@style/OptionTextContainer">
+
+                        <TextView
+                            style="@style/OptionTitle"
+                            android:text="TDS Certificate" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ChevronIcon"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

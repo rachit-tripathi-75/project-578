@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">BankingApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="loan_types">
+
+        <item>--Select Loan type--</item>
+
+        <item>New Home Loan</item>
+
+        <item>Refinance</item>
+
+        <item>Construction</item>
+
+        <item>Home Improvement</item>
+    </string-array>
+
+    <string-array name="product_types">
+        <item>Please Select</item>
+        <item>Personal Loan</item>
+        <item>Home Loan</item>
+        <item>Car Loan</item>
+        <item>Education Loan</item>
+    </string-array>
+
+    <string-array name="account_numbers">
+        <item>Please Select</item>
+        <item>XXXX1234</item>
+        <item>XXXX5678</item>
+    </string-array>
+
+    <string-array name="cities">
+
+        <item>Select City</item>
+
+        <item>Delhi</item>
+
+        <item>Mumbai</item>
+
+        <item>Bangalore</item>
+
+        <item>Hyderabad</item>
+
+        <item>Chennai</item>
+
+        <item>Kolkata</item>
+    </string-array>
+
+    <string-array name="tw_brands">
+
+        <item>Select TW brand</item>
+
+        <item>Honda</item>
+
+        <item>Hero</item>
+
+        <item>TVS</item>
+
+        <item>Bajaj</item>
+
+        <item>Yamaha</item>
+
+        <item>Royal Enfield</item>
+    </string-array>
+
+    <string-array name="purchase_timeline">
+
+        <item>When are you planning to buy?</item>
+
+        <item>Immediately</item>
+
+        <item>Within a month</item>
+
+        <item>Within 3 months</item>
+
+        <item>After 3 months</item>
+    </string-array>
+
+
+    <string-array name="financial_years">
+
+        <item>FY 23-24</item>
+
+        <item>FY 22-23</item>
+
+        <item>FY 21-22</item>
+
+        <item>FY 20-21</item>
+
+        <item>FY 19-20</item>
+    </string-array>
+
+
+</resources>

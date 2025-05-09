@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_50"
+    tools:context=".MainActivity">
+
+
+    <!-- Header -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/navy_700"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/menuIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="Menu"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/white" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FINANCE"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/blue_rounded_bg"
+                    android:paddingHorizontal="4dp"
+                    android:text="APP"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="Notifications"
+                    android:src="@drawable/ic_notification"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/historyIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:contentDescription="History"
+                    android:src="@drawable/ic_history"
+                    app:tint="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <!-- Account Section -->
+
+            <LinearLayout
+                android:id="@+id/llAccountInformation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_16sdp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/each_section_background" />
+
+
+            </LinearLayout>
+
+            <!-- Banking Section -->
+
+            <LinearLayout
+                android:id="@+id/llBanking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_50"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Banking"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+
+                <GridLayout
+                    android:id="@+id/glBanking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:columnCount="3">
+
+                    <!-- Service 1: Account Overview -->
+                    <include
+                        android:id="@+id/accountOverview"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 2: Account Activity -->
+                    <include
+                        android:id="@+id/accountActivity"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 3: Statement -->
+                    <include
+                        android:id="@+id/statement"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+
+                </GridLayout>
+
+            </LinearLayout>
+
+
+            <!-- Banking Section -->
+            <LinearLayout
+                android:id="@+id/llPayAndTransfer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_50"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Pay &amp; Transfer"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+
+                <GridLayout
+                    android:id="@+id/glPayAndTransfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:columnCount="3">
+
+                    <!-- Service 1: Transfer Money -->
+                    <include
+                        android:id="@+id/transferMoney"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 2: Bill Pay & Recharge -->
+                    <include
+                        android:id="@+id/billPayAndRecharge"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 3: Bhim UPI -->
+                    <include
+                        android:id="@+id/bhimUPI"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 3: Scan Any QR -->
+                    <include
+                        android:id="@+id/scanAnyQr"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 3: Pay Your Contact -->
+                    <include
+                        android:id="@+id/payYourContact"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 3: One Time Transfer -->
+                    <include
+                        android:id="@+id/oneTimeTransfer"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+
+                </GridLayout>
+
+            </LinearLayout>
+
+            <!-- Loans Section -->
+            <LinearLayout
+                android:id="@+id/llLoans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_50"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Loans"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+
+                <GridLayout
+                    android:id="@+id/glLoan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray_50"
+                    android:columnCount="3"
+                    android:padding="8dp">
+
+                    <!-- Service 1: Personal Loan -->
+                    <include
+                        android:id="@+id/personalLoan"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 2: Home Loan -->
+                    <include
+                        android:id="@+id/homeLoan"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 3: Gold Loan -->
+                    <include
+                        android:id="@+id/goldLoan"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 4: Pay Day Loan -->
+                    <include
+                        android:id="@+id/PayDayLoan"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 5: Pay Overdue EMI -->
+                    <include
+                        android:id="@+id/payOverdueEMI"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 6: Loan and Card Offers -->
+                    <include
+                        android:id="@+id/loanAndCardOffers"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+
+                </GridLayout>
+
+            </LinearLayout>
+
+            <!-- Apply Now Section -->
+            <LinearLayout
+                android:id="@+id/llApplyNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_50"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Apply Now"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+
+                <GridLayout
+                    android:id="@+id/glApplyNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray_50"
+                    android:columnCount="3"
+                    android:padding="8dp">
+
+                    <!-- Service 1: FASTag -->
+                    <include
+                        android:id="@+id/FASTag"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 2: Investment Account -->
+                    <include
+                        android:id="@+id/investmentAccount"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 3: Apply For Credit Card -->
+                    <include
+                        android:id="@+id/ApplyForCreditCard"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 4: Pay Day Loan -->
+                    <include
+                        android:id="@+id/payDayLoan2"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 5: Personal Loan -->
+                    <include
+                        android:id="@+id/personalLoan2"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+                    <!-- Service 6: Two Wheeler Loan -->
+                    <include
+                        android:id="@+id/twoWheelerLoan"
+                        layout="@layout/item_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp" />
+
+
+                </GridLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/llScanQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:background="@drawable/bottom_scan_qr_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/scanqrbottomlottie" />
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@color/gray_400" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Scan QR"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:visibility="gone"
+        app:backgroundColor="@color/navy_600"
+        app:indicatorRadius="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom"
+        app:textSize="@dimen/_12ssp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
