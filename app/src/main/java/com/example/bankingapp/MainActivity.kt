@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.bankingapp.activities.AccountActivity
 import com.example.bankingapp.activities.AccountOverviewActivity
 import com.example.bankingapp.activities.BillPayAndRechargeActivity
@@ -33,6 +34,7 @@ import com.example.bankingapp.activities.UpiActivity
 import com.example.bankingapp.adapters.AccountInformationViewPagerAdapter
 import com.example.bankingapp.databinding.ActivityMainBinding
 
+// home screen for User (Customer) App...............
 
 class MainActivity : AppCompatActivity() {
 
@@ -105,17 +107,17 @@ class MainActivity : AppCompatActivity() {
                 handler.postDelayed(this, PERIOD_MS)
             }
         }
-        binding.nestedScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (scrollY > oldScrollY && scrollY > 0 && isScanQRVisible) {
-                // Scrolling down, and it's currently visible
-                slideDown();
-                isScanQRVisible = false;
-            } else if (scrollY < oldScrollY && !isScanQRVisible) {
-                // Scrolling up, and it's currently hidden
-                slideUp();
-                isScanQRVisible = true;
-            }
-        }
+//        binding.nestedScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+//            if (scrollY > oldScrollY && scrollY > 0 && isScanQRVisible) {
+//                // Scrolling down, and it's currently visible
+//                slideDown();
+//                isScanQRVisible = false;
+//            } else if (scrollY < oldScrollY && !isScanQRVisible) {
+//                // Scrolling up, and it's currently hidden
+//                slideUp();
+//                isScanQRVisible = true;
+//            }
+//        }
     }
 
     private fun slideDown() {

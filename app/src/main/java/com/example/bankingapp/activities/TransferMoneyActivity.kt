@@ -39,10 +39,7 @@ class TransferMoneyActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.profileButton.setOnClickListener {
-            // Handle profile button click
-            // For example: startActivity(Intent(this, ProfileActivity::class.java))
-        }
+
     }
 
     private fun setupRecyclerView() {

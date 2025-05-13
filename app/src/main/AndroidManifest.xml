@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -12,12 +14,22 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/gccsllogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/gccsllogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.BankingApp"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".agent.activities.StatementActivity"
             android:exported="false" />
@@ -33,24 +45,13 @@
         <activity
             android:name=".agent.activities.DailyPostingActivity"
             android:exported="false" />
-        <activity
-            android:name=".agent.activities.DailyPosting"
-            android:exported="false" />
-        <activity
-            android:name=".agent.activities.DashboardActivity"
-            android:exported="false" />
+
         <activity
             android:name=".agent.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".activities.ConsolidatedStatementActivity"
             android:exported="false" />

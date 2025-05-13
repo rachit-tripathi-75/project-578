@@ -48,6 +48,9 @@ import com.example.bankingapp.agent.fragments.PostingFragment
 import com.example.bankingapp.agent.fragments.ReportsFragment
 import com.example.bankingapp.databinding.ActivityHomeBinding
 
+
+// home screen for Agent App.........
+
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var options: ActivityOptionsCompat
@@ -129,17 +132,17 @@ class HomeActivity : AppCompatActivity() {
                 handler.postDelayed(this, PERIOD_MS)
             }
         }
-        binding.nestedScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (scrollY > oldScrollY && scrollY > 0 && isScanQRVisible) {
-                // Scrolling down, and it's currently visible
-                slideDown();
-                isScanQRVisible = false;
-            } else if (scrollY < oldScrollY && !isScanQRVisible) {
-                // Scrolling up, and it's currently hidden
-                slideUp();
-                isScanQRVisible = true;
-            }
-        }
+//        binding.nestedScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+//            if (scrollY > oldScrollY && scrollY > 0 && isScanQRVisible) {
+//                // Scrolling down, and it's currently visible
+//                slideDown();
+//                isScanQRVisible = false;
+//            } else if (scrollY < oldScrollY && !isScanQRVisible) {
+//                // Scrolling up, and it's currently hidden
+//                slideUp();
+//                isScanQRVisible = true;
+//            }
+//        }
     }
 
     private fun slideDown() {

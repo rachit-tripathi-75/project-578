@@ -38,9 +38,7 @@ class BillPayAndRechargeActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.profileButton.setOnClickListener {
-            // Handle profile button click
-        }
+        
     }
 
     private fun setupRecyclerView() {

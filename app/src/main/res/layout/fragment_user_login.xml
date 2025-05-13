@@ -26,7 +26,7 @@
 
 
         <EditText
-            android:id="@+id/etUsername"
+            android:id="@+id/etId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
@@ -51,26 +51,46 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etUsername" />
-
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/edit_text_background"
-            android:hint="Enter Password"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_14sdp"
-            android:paddingBottom="@dimen/_14sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPassword" />
-
+            app:layout_constraintTop_toBottomOf="@id/etId" />
 
         <LinearLayout
+            android:id="@+id/llPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPassword">
+
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="1.7"
+                android:background="@drawable/edit_text_background"
+                android:hint="Enter Password"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_14sdp"
+                android:paddingBottom="@dimen/_14sdp" />
+
+            <ImageButton
+                android:id="@+id/togglePasswordButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="0.3"
+                android:background="@null"
+                android:src="@drawable/ic_visibility_off" />
+
+        </LinearLayout>
+
+
+        <RelativeLayout
             android:id="@+id/llButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,35 +98,43 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword">
+            app:layout_constraintTop_toBottomOf="@+id/llPassword">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnFaceId"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:text="Face ID"
-                android:textColor="@color/black"
-                app:backgroundTint="@color/white"
-                app:cornerRadius="28dp"
-                app:icon="@drawable/ic_face_id"
-                app:iconGravity="textStart"
-                app:iconTint="@color/black"
-                app:strokeColor="@color/light_gray" />
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/btnFaceId"-->
+            <!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="56dp"-->
+            <!--                android:layout_marginEnd="8dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:text="Face ID"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                app:backgroundTint="@color/white"-->
+            <!--                app:cornerRadius="28dp"-->
+            <!--                app:icon="@drawable/ic_face_id"-->
+            <!--                app:iconGravity="textStart"-->
+            <!--                app:iconTint="@color/black"-->
+            <!--                app:strokeColor="@color/light_gray" />-->
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSignIn"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_centerInParent="true"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/black"
                 android:text="Login"
                 android:textColor="@color/white"
                 app:cornerRadius="28dp" />
-        </LinearLayout>
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
