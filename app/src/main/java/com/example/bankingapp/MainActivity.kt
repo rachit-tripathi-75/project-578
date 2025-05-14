@@ -13,14 +13,18 @@ import android.view.animation.TranslateAnimation
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.bankingapp.activities.AccountActivity
 import com.example.bankingapp.activities.AccountOverviewActivity
 import com.example.bankingapp.activities.BillPayAndRechargeActivity
 import com.example.bankingapp.activities.GoldLoanActivity
 import com.example.bankingapp.activities.HomeLoanActivity
+import com.example.bankingapp.activities.MyPassbookActivity
 import com.example.bankingapp.activities.OneTimeTransferActivity
 import com.example.bankingapp.activities.PayOverdueEmiActivity
 import com.example.bankingapp.activities.PayYourContactActivity
@@ -48,11 +52,12 @@ class MainActivity : AppCompatActivity() {
     private val previousScrollY = 0
     private var isScanQRVisible = true
 
-
+// implement the Account Activity page, inside the Account Overview page...... as My Passbook has introduced.....
 
     private val bankingServices = listOf(
         BankingService("Account Overview", R.drawable.account_overview),
-        BankingService("Account Activity", R.drawable.account_activity),
+//        BankingService("Account Activity", R.drawable.account_activity),
+        BankingService("My Passbook", R.drawable.passbook),
         BankingService("Statement", R.drawable.account_statement)
     )
 
@@ -85,8 +90,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
 
         initializeViews()
         listeners()
@@ -165,7 +177,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun listeners() {
         binding.accountActivity.llService.setOnClickListener {
-            startActivity(Intent(this@MainActivity, AccountActivity::class.java))
+//            startActivity(Intent(this@MainActivity, AccountActivity::class.java))
+//            implement the AccountActivity inside the AccountOverview activity......
+            startActivity(Intent(this@MainActivity, MyPassbookActivity::class.java), options.toBundle())
         }
         binding.accountOverview.llService.setOnClickListener {
             startActivity(Intent(this@MainActivity, AccountOverviewActivity::class.java), options.toBundle())

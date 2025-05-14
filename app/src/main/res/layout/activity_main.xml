@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_50"
@@ -147,8 +148,7 @@
                     android:id="@+id/glBanking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:columnCount="3">
+                    android:columnCount="4">
 
                     <!-- Service 1: Account Overview -->
                     <include
@@ -159,7 +159,7 @@
                         android:layout_columnWeight="1"
                         android:layout_margin="4dp" />
 
-                    <!-- Service 2: Account Activity -->
+                    <!-- Service 2(a): Account Activity -->
                     <include
                         android:id="@+id/accountActivity"
                         layout="@layout/item_service"
@@ -167,6 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
                         android:layout_margin="4dp" />
+
 
                     <!-- Service 3: Statement -->
                     <include
