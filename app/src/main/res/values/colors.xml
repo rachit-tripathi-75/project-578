@@ -110,4 +110,13 @@
     <color name="light_gray">#E0E0E0</color>
 
 
+    <color name="primary">#1E3A5F</color>
+    <color name="primary_dark">#152A45</color>
+    <color name="accent">#2196F3</color>
+    <color name="sidebar_bg">#1E3A5F</color>
+    <color name="text_dark">#333333</color>
+    <color name="text_light">#757575</color>
+
+
+
 </resources>

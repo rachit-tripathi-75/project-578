@@ -1,9 +1,11 @@
 package com.example.bankingapp.activities
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -38,11 +40,16 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (PrefsManager.getSession(this)) {
                 when (PrefsManager.getUserType(this)) {
-                    0 -> {
-                        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+                    0 -> { // 0 --> user
+                        val pairs = arrayOf(
+                            android.util.Pair<View, String>(binding.ivAppLogo, "logoImage"),
+                            android.util.Pair<View, String>(binding.ivAppLogoText, "logoText")
+                        )
+                        val options = ActivityOptions.makeSceneTransitionAnimation(this@SplashScreenActivity, *pairs)
+                        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java), options.toBundle())
                         finish()
                     }
-                    1 -> {
+                    1 -> { // 1 --> agent
                         startActivity(Intent(this@SplashScreenActivity, HomeActivity::class.java))
                         finish()
                     }

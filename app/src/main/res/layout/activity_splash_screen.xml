@@ -22,12 +22,14 @@
             android:id="@+id/ivAppLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:transitionName="logoImage"
             android:src="@drawable/gccslnobackground" />
 
         <ImageView
             android:id="@+id/ivAppLogoText"
             android:layout_width="@dimen/_300sdp"
             android:layout_height="wrap_content"
+            android:transitionName="logoText"
             android:layout_marginTop="@dimen/_10sdp"
             android:src="@drawable/gccsltextlogo" />
 

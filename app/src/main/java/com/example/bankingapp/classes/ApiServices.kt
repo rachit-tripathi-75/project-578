@@ -1,5 +1,6 @@
 package com.example.bankingapp.classes
 
+import com.example.bankingapp.responses.AccountsDetailResponse
 import com.example.bankingapp.responses.LoginResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -19,6 +20,16 @@ class ApiServices {
             @Field("mid") mid: String,
             @Field("password") password: String
         ): Call<LoginResponse>
+    }
+
+    interface AccountsDetailApiService {
+        @FormUrlEncoded
+        @POST("API/getAccountsdetail")
+        fun getAccountDetails(
+            @Header("Authorization") authorization: String,
+            @Header("Cookie") cookie: String,
+            @Field("memid") memId: String
+        ): Call<AccountsDetailResponse>
     }
 
 }
