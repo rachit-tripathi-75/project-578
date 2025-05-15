@@ -2,55 +2,58 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <!-- Column 1: Empty (Fixed Width) -->
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:background="@drawable/table_cell_bg"
+            android:padding="8dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_cell_bg"
-                android:padding="8dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+        <!-- Column 2: Label (Fixed Width) -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/table_cell_bg"
+            android:padding="8dp"
+            android:text="Opening Balance"
+            android:textAlignment="center"
+            android:textColor="@color/dark_brown"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_cell_bg"
-                android:padding="8dp"
-                android:text="Opening Balance"
-                android:textAlignment="center"
-                android:textColor="@color/dark_brown"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+        <!-- Column 3: Value (Fixed Width) -->
+        <TextView
+            android:id="@+id/openingBalanceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/table_cell_bg"
+            android:padding="8dp"
+            android:text="107.00"
+            android:textAlignment="center"
+            android:textColor="@color/dark_brown"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/openingBalanceTextView"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_cell_bg"
-                android:padding="8dp"
-                android:text="107.00"
-                android:textAlignment="center"
-                android:textColor="@color/dark_brown"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

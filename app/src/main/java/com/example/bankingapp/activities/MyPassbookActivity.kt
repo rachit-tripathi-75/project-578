@@ -41,7 +41,9 @@ class MyPassbookActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
 
@@ -54,7 +56,7 @@ class MyPassbookActivity : AppCompatActivity() {
     private fun getTransactionData(): List<TransactionItem> {
         val transactions = mutableListOf<TransactionItem>()
 
-        // Add opening balance
+//         Add opening balance
         transactions.add(TransactionItem.OpeningBalance("107.00"))
 
         // Add transactions
