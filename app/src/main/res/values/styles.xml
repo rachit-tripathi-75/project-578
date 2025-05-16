@@ -83,4 +83,17 @@
     </style>
 
 
+    <style name="PinEditTextStyle">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/pin_edit_text_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>

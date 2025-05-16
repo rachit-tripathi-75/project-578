@@ -130,6 +130,16 @@
     <color name="dark_gray">#757575</color>
     <color name="border_gray">#E0E0E0</color>
     <color name="dark_brown">#5D4037</color>
+
+
+    <color name="pink_50">#FDF2F8</color>
+
+
+    <color name="green_300">#6EE7B7</color>
+
+
+    <color name="yellow_500">#F59E0B</color>
+    <color name="yellow_700">#B45309</color>
+
+
 </resources>
-
-

@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.bankingapp.MainActivity
 import com.example.bankingapp.R
+import com.example.bankingapp.activities.SplashScreenActivity
 import com.example.bankingapp.classes.ApiClient
 import com.example.bankingapp.classes.ApiServices
 import com.example.bankingapp.classes.PrefsManager
@@ -85,7 +86,7 @@ class UserLoginFragment : Fragment() {
                         PrefsManager.setUserInformation(requireContext(), loginData)
                         PrefsManager.setSession(requireContext(), true)
                         PrefsManager.setUserType(requireContext(), 0) //  0 --> for user (customer)........
-                        startActivity(Intent(requireContext(), MainActivity::class.java))
+                        startActivity(Intent(requireContext(), SplashScreenActivity::class.java))
                         requireActivity().finish()
                     }
 

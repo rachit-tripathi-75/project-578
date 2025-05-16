@@ -46,7 +46,11 @@ class SplashScreenActivity : AppCompatActivity() {
                             android.util.Pair<View, String>(binding.ivAppLogoText, "logoText")
                         )
                         val options = ActivityOptions.makeSceneTransitionAnimation(this@SplashScreenActivity, *pairs)
-                        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java), options.toBundle())
+                        if (PrefsManager.hasCreatedmPin(this)) {
+                            startActivity(Intent(this@SplashScreenActivity, EnterMPinActivity::class.java), options.toBundle())
+                        } else {
+                            startActivity(Intent(this@SplashScreenActivity, CreateMPinActivity::class.java), options.toBundle())
+                        }
                         finish()
                     }
                     1 -> { // 1 --> agent

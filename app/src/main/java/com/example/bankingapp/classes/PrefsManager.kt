@@ -57,6 +57,17 @@ class PrefsManager(private val context: Context) {
             return sharedPreferences.getInt("userType", -1)
         }
 
+        fun setCreatedmPinFlag(context: Context, flag: Boolean) { // true --> user has created mPIN
+            context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit() {
+                putBoolean("mPinFlag", flag)
+            }
+        }
+
+        fun hasCreatedmPin(context: Context): Boolean {
+            val sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+            return sharedPreferences.getBoolean("mPinFlag", false)
+        }
+
 
 
     }

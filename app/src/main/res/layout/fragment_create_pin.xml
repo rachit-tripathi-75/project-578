@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/iconContainer"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:cardBackgroundColor="@color/purple_100"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/shieldIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_shield"
+                    app:tint="@color/purple_600" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Create mPIN"
+                android:textColor="@color/gray_800"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iconContainer" />
+
+            <TextView
+                android:id="@+id/subtitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Please create a secure 6-digit PIN"
+                android:textAlignment="center"
+                android:textColor="@color/gray_500"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+            <LinearLayout
+                android:id="@+id/pinContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subtitleText">
+
+                <EditText
+                    android:id="@+id/pinDigit1"
+                    style="@style/PinEditTextStyle"
+                    android:layout_marginEnd="4dp"
+                    android:importantForAutofill="no" />
+
+                <EditText
+                    android:id="@+id/pinDigit2"
+                    style="@style/PinEditTextStyle"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:importantForAutofill="no" />
+
+                <EditText
+                    android:id="@+id/pinDigit3"
+                    style="@style/PinEditTextStyle"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:importantForAutofill="no" />
+
+                <EditText
+                    android:id="@+id/pinDigit4"
+                    style="@style/PinEditTextStyle"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:importantForAutofill="no" />
+
+                <EditText
+                    android:id="@+id/pinDigit5"
+                    style="@style/PinEditTextStyle"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:importantForAutofill="no" />
+
+                <EditText
+                    android:id="@+id/pinDigit6"
+                    style="@style/PinEditTextStyle"
+                    android:layout_marginStart="4dp"
+                    android:importantForAutofill="no" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pinOptionsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pinContainer">
+
+                <LinearLayout
+                    android:id="@+id/showPinContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/showPinIcon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_visibility"
+                        app:tint="@color/purple_600" />
+
+                    <TextView
+                        android:id="@+id/showPinText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="Show PIN"
+                        android:textColor="@color/purple_600"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/strengthIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/strengthBar1"
+                            android:layout_width="24dp"
+                            android:layout_height="6dp"
+                            android:layout_marginEnd="2dp"
+                            android:background="@color/gray_200" />
+
+                        <View
+                            android:id="@+id/strengthBar2"
+                            android:layout_width="24dp"
+                            android:layout_height="6dp"
+                            android:layout_marginEnd="2dp"
+                            android:background="@color/gray_200" />
+
+                        <View
+                            android:id="@+id/strengthBar3"
+                            android:layout_width="24dp"
+                            android:layout_height="6dp"
+                            android:background="@color/gray_200" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/strengthText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Weak PIN"
+                        android:textColor="@color/gray_600"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="4dp"
+                android:text=""
+                android:textColor="@color/red_500"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pinOptionsContainer" />
+
+            <TextView
+                android:id="@+id/weakPinText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Avoid sequential (123456) or repeated (111111) digits"
+                android:textColor="@color/red_500"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pinOptionsContainer" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/continueButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/purple_600"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Continue"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="12dp"
+                app:iconGravity="textEnd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/errorText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
