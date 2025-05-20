@@ -51,6 +51,9 @@ class ProfileScreenActivity : AppCompatActivity() {
             getSharedPreferences(PrefsManager.PREF_NAME, MODE_PRIVATE).edit() {
                 clear()
             }
+            getSharedPreferences(PrefsManager.PIN_SHOW_PREF_NAME, MODE_PRIVATE).edit() {
+                clear()
+            }
         }
     }
 

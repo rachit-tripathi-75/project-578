@@ -207,6 +207,7 @@
                         android:hint="Enter Password"
                         android:inputType="textPassword"
                         android:padding="16dp"
+                        android:imeOptions="actionDone"
                         android:textColorHint="@color/gray_400" />
 
                     <ImageButton

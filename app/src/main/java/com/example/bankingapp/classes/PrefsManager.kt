@@ -18,6 +18,7 @@ class PrefsManager(private val context: Context) {
 
     companion object {
         const val PREF_NAME = "MyPrefs"
+        const val PIN_SHOW_PREF_NAME = "pinBottomSheetDialogPrefs"
 
         fun setSession(context: Context, flag: Boolean) {
             context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit() {
@@ -66,6 +67,17 @@ class PrefsManager(private val context: Context) {
         fun hasCreatedmPin(context: Context): Boolean {
             val sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getBoolean("mPinFlag", false)
+        }
+
+        fun setShouldShowCreatePinBottomSheetDialog(context: Context, flag: Boolean) { // false --> user has created mPIN
+            context.getSharedPreferences(PIN_SHOW_PREF_NAME, Context.MODE_PRIVATE).edit() {
+                putBoolean("pinCreateBottomSheetDialog", flag)
+            }
+        }
+
+        fun shouldShowCreatePinBottomSheetDialog(context: Context): Boolean {
+            val sharedPreferences = context.getSharedPreferences(PIN_SHOW_PREF_NAME, Context.MODE_PRIVATE)
+            return sharedPreferences.getBoolean("pinCreateBottomSheetDialog", true)
         }
 
 

@@ -2,8 +2,10 @@ package com.example.bankingapp
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
@@ -399,7 +401,7 @@ class LoginActivity : AppCompatActivity() {
             "Bearer 8a56598bd5114ab31f6f70e76e1873e8945eafcd915b3f6ada4c0132d212a57e",
             "ci_session=k95qcmfp6di79vbid99u903plt7v5u10",
             pin,
-            "45454asas").enqueue(object : retrofit2.Callback<LoginResponse> {
+            getAndroidId(this)).enqueue(object : retrofit2.Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: retrofit2.Response<LoginResponse>) {
                 binding.btnLoginWithMPin.visibility = View.VISIBLE
 //                binding.progressBar.visibility = View.GONE
@@ -409,6 +411,7 @@ class LoginActivity : AppCompatActivity() {
                     if (loginData?.status == 1) {
                         PrefsManager.setUserInformation(applicationContext, loginData)
                         PrefsManager.setSession(applicationContext, true)
+                        PrefsManager.setShouldShowCreatePinBottomSheetDialog(applicationContext, false)
                         Log.d("userType", "user: $userType")
                         PrefsManager.setUserType(applicationContext, userTypeInt) //  0 --> for user (customer)........
                                                                                     // 1 --> for agent...........
@@ -432,6 +435,13 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    private fun getAndroidId(context: Context): String {
+        Log.d("androidIdTAG", Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID))
+        val pin = pinDigits.joinToString("") { it.text.toString() }
+        Log.d("pinTAG", pin)
+        return Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
     }
 
 

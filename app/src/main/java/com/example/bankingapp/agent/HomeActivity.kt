@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
@@ -46,6 +47,8 @@ import com.example.bankingapp.agent.activities.DailyTransactionActivity
 import com.example.bankingapp.agent.fragments.HomeFragment
 import com.example.bankingapp.agent.fragments.PostingFragment
 import com.example.bankingapp.agent.fragments.ReportsFragment
+import com.example.bankingapp.classes.PinCreationBottomSheet
+import com.example.bankingapp.classes.PrefsManager
 import com.example.bankingapp.databinding.ActivityHomeBinding
 
 
@@ -143,6 +146,18 @@ class HomeActivity : AppCompatActivity() {
 //                isScanQRVisible = true;
 //            }
 //        }
+
+        if(PrefsManager.shouldShowCreatePinBottomSheetDialog(this)) {
+            showPinCreationDialog()
+        }
+
+
+    }
+
+    private fun showPinCreationDialog() {
+        val bottomSheet = PinCreationBottomSheet.newInstance(1)
+        bottomSheet.show(supportFragmentManager, "PinCreationBottomSheet")
+        Log.d("bottomSheetTag", "reached")
     }
 
     private fun slideDown() {

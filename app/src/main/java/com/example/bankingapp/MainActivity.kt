@@ -101,7 +101,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        if(!PrefsManager.hasCreatedmPin(this)) {
+
+        if (PrefsManager.shouldShowCreatePinBottomSheetDialog((this))) {
             showPinCreationDialog()
         }
 
@@ -144,7 +145,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showPinCreationDialog() {
-        val bottomSheet = PinCreationBottomSheet.newInstance()
+        val bottomSheet = PinCreationBottomSheet.newInstance(0)
         bottomSheet.show(supportFragmentManager, "PinCreationBottomSheet")
         Log.d("bottomSheetTag", "reached")
     }

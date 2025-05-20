@@ -1,4 +1,4 @@
-package com.example.bankingapp.activities
+package com.example.bankingapp.agent.activities
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -27,34 +27,33 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.bankingapp.MainActivity
 import com.example.bankingapp.R
 import com.example.bankingapp.agent.HomeActivity
 import com.example.bankingapp.classes.ApiClient
 import com.example.bankingapp.classes.PrefsManager
+import com.example.bankingapp.databinding.ActivityCreateMpinAgentBinding
 import com.example.bankingapp.databinding.ActivityCreateMpinBinding
 import com.example.bankingapp.databinding.FragmentCreatePinBinding
 import com.example.bankingapp.responses.CreateMPinResponse
-import com.example.bankingapp.responses.LoginResponse
 import com.google.android.material.button.MaterialButton
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
+import kotlin.collections.forEach
 
 class CreateMPinActivity : AppCompatActivity() {
 
     private lateinit var pagerAdapter: MPinPagerAdapter
     private var createdPin: String = ""
 
-    private lateinit var binding: ActivityCreateMpinBinding
+    private lateinit var binding: ActivityCreateMpinAgentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityCreateMpinBinding.inflate(layoutInflater)
+        binding = ActivityCreateMpinAgentBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -686,7 +685,7 @@ class PinSuccessFragment : Fragment() {
     private fun setupContinueButton() {
         continueButton.setOnClickListener {
             // In a real app, you would navigate to your home screen activity
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            startActivity(Intent(requireContext(), HomeActivity::class.java))
             requireActivity().finishAffinity()
             PrefsManager.setCreatedmPinFlag(requireContext(), true)
             PrefsManager.setShouldShowCreatePinBottomSheetDialog(requireContext(), false) // no need to show again the bottom sheet dialog of CREATE-PIN!!!
