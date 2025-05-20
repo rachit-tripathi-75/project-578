@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Please re-enter your 6-digit PIN to confirm"
+                android:text="Please re-enter your 4-digit PIN to confirm"
                 android:textAlignment="center"
                 android:textColor="@color/gray_500"
                 android:textSize="14sp"
@@ -106,18 +106,6 @@
                     android:layout_marginEnd="4dp"
                     android:importantForAutofill="no" />
 
-                <EditText
-                    android:id="@+id/pinDigit5"
-                    style="@style/PinEditTextStyle"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/pinDigit6"
-                    style="@style/PinEditTextStyle"
-                    android:layout_marginStart="4dp"
-                    android:importantForAutofill="no" />
 
             </LinearLayout>
 

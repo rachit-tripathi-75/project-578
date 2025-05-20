@@ -2,9 +2,12 @@ package com.example.bankingapp.activities
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +17,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -25,14 +29,19 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.bankingapp.R
 import com.example.bankingapp.agent.HomeActivity
+import com.example.bankingapp.classes.ApiClient
 import com.example.bankingapp.classes.PrefsManager
 import com.example.bankingapp.databinding.ActivityCreateMpinBinding
 import com.example.bankingapp.databinding.FragmentCreatePinBinding
+import com.example.bankingapp.responses.CreateMPinResponse
+import com.example.bankingapp.responses.LoginResponse
 import com.google.android.material.button.MaterialButton
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import retrofit2.Call
 
 class CreateMPinActivity : AppCompatActivity() {
 
@@ -84,6 +93,8 @@ class CreateMPinActivity : AppCompatActivity() {
     fun navigateToSuccess() {
         binding.viewPager.currentItem = 2
 
+        insertMPinToDatabase()
+
         // In a real app, you would save the PIN securely here
         // For example: savePin(createdPin)
     }
@@ -91,6 +102,44 @@ class CreateMPinActivity : AppCompatActivity() {
     fun getCreatedPin(): String {
         return createdPin
     }
+
+
+    private fun insertMPinToDatabase() {
+
+        ApiClient.createMPinInstance.createMPin(
+            "Bearer 8a56598bd5114ab31f6f70e76e1873e8945eafcd915b3f6ada4c0132d212a57e",
+            "ci_session=r4gbb0fffqo5r9tdn89kukeq35cpan3c",
+            getCreatedPin(),
+            getAndroidId(this),
+            PrefsManager.getUserInformation(this).data.memId).enqueue(object : retrofit2.Callback<CreateMPinResponse> {
+            override fun onResponse(call: Call<CreateMPinResponse>, response: retrofit2.Response<CreateMPinResponse>) {
+
+                if (response.isSuccessful) {
+                    val gson = Gson()
+                    Log.d("createMPinTAG", "response: ${gson.toJson(response)}")
+                    val s = response.body()
+                    if (s?.status == 1) {
+                        Toast.makeText(applicationContext, "Pin has been saved securely.", Toast.LENGTH_SHORT).show()
+                        PrefsManager.setCreatedmPinFlag(applicationContext, true)
+                    }
+
+                } else {
+                    Toast.makeText(applicationContext, "An Error occurred on pushing to database", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<CreateMPinResponse>, t: Throwable) {
+                Log.d("createMPinTAG", "Error: ${t.message}")
+                Toast.makeText(applicationContext, "An error has occurred. Please try again later", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun getAndroidId(context: Context): String {
+        return Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+    }
+
+
 
     private inner class MPinPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 3
@@ -143,9 +192,7 @@ class CreatePinFragment : Fragment() {
             view.findViewById(R.id.pinDigit1),
             view.findViewById(R.id.pinDigit2),
             view.findViewById(R.id.pinDigit3),
-            view.findViewById(R.id.pinDigit4),
-            view.findViewById(R.id.pinDigit5),
-            view.findViewById(R.id.pinDigit6)
+            view.findViewById(R.id.pinDigit4)
         )
         errorText = view.findViewById(R.id.errorText)
         weakPinText = view.findViewById(R.id.weakPinText)
@@ -329,8 +376,8 @@ class CreatePinFragment : Fragment() {
         continueButton.setOnClickListener {
             val pin = getPinString()
 
-            if (pin.length < 6) {
-                showError("Please enter all 6 digits")
+            if (pin.length < 4) {
+                showError("Please enter all 4 digits")
                 return@setOnClickListener
             }
 

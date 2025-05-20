@@ -28,6 +28,7 @@ import retrofit2.Call
 class LoginActivity : AppCompatActivity() {
 
     private val userTypes = arrayOf("User", "Agent")
+    private var userTypeInt = 0
     private lateinit var binding: ActivityLoginBinding
     private var userType: String = "user"
     private var showPassword = false
@@ -65,12 +66,14 @@ class LoginActivity : AppCompatActivity() {
             when {
                 binding.userRadioButton.isChecked -> {
                     userType = "user"
+                    userTypeInt = 0
                     showCredentialsScreen()
                     showPinScreen()
                 }
 
                 binding.agentRadioButton.isChecked -> {
                     userType = "agent"
+                    userTypeInt = 1
                     showCredentialsScreen()
                     showPinScreen()
                 }
@@ -363,7 +366,9 @@ class LoginActivity : AppCompatActivity() {
                     if (loginData?.status == 1) {
                         PrefsManager.setUserInformation(applicationContext, loginData)
                         PrefsManager.setSession(applicationContext, true)
-                        PrefsManager.setUserType(applicationContext, 0) //  0 --> for user (customer)........
+                        Log.d("userType", "user: $userType")
+                        PrefsManager.setUserType(applicationContext, userTypeInt) //  0 --> for user (customer)........
+                                                                                    // 1 --> for agent...........
                         startActivity(Intent(applicationContext, SplashScreenActivity::class.java))
                         finish()
                     }
@@ -404,7 +409,9 @@ class LoginActivity : AppCompatActivity() {
                     if (loginData?.status == 1) {
                         PrefsManager.setUserInformation(applicationContext, loginData)
                         PrefsManager.setSession(applicationContext, true)
-                        PrefsManager.setUserType(applicationContext, 0) //  0 --> for user (customer)........
+                        Log.d("userType", "user: $userType")
+                        PrefsManager.setUserType(applicationContext, userTypeInt) //  0 --> for user (customer)........
+                                                                                    // 1 --> for agent...........
                         startActivity(Intent(applicationContext, SplashScreenActivity::class.java))
                         finish()
                     }

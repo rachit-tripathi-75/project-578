@@ -38,6 +38,7 @@ import com.example.bankingapp.activities.TwoWheelerLoanActivity
 import com.example.bankingapp.activities.UpiActivity
 import com.example.bankingapp.adapters.AccountInformationViewPagerAdapter
 import com.example.bankingapp.classes.PinCreationBottomSheet
+import com.example.bankingapp.classes.PrefsManager
 import com.example.bankingapp.databinding.ActivityMainBinding
 
 // home screen for User (Customer) App...............
@@ -100,7 +101,10 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        showPinCreationDialog()
+        if(!PrefsManager.hasCreatedmPin(this)) {
+            showPinCreationDialog()
+        }
+
 
 
         initializeViews()

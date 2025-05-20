@@ -32,5 +32,13 @@ object ApiClient {
             .create(ApiServices.AccountsDetailApiService::class.java)
     }
 
+    val createMPinInstance: ApiServices.CreateMPinApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiServices.CreateMPinApiService::class.java)
+    }
+
 
 }
