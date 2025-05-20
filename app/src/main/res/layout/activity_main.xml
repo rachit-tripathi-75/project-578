@@ -447,6 +447,8 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+
+
     <LinearLayout
         android:id="@+id/llScanQR"
         android:layout_width="wrap_content"

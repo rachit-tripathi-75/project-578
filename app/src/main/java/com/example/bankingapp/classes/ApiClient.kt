@@ -16,6 +16,14 @@ object ApiClient {
             .create(ApiServices.LoginApiService::class.java)
     }
 
+    val loginWithMPinInstance: ApiServices.LoginWithMPinApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiServices.LoginWithMPinApiService::class.java)
+    }
+
     val getAccountDetailsInstance: ApiServices.AccountsDetailApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)

@@ -640,13 +640,13 @@ class PinSuccessFragment : Fragment() {
         continueButton.setOnClickListener {
             // In a real app, you would navigate to your home screen activity
             startActivity(Intent(requireContext(), HomeActivity::class.java))
+            requireActivity().finishAffinity()
             PrefsManager.setCreatedmPinFlag(requireContext(), true)
 
             // Add a nice transition animation
             requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
             // Finish this activity so user can't go back to PIN screen with back button
-            requireActivity().finish()
         }
     }
 

@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import com.example.bankingapp.MainActivity
 import com.example.bankingapp.R
 import com.example.bankingapp.agent.HomeActivity
 import com.example.bankingapp.databinding.ActivityEnterMpinBinding
@@ -178,8 +179,8 @@ class EnterMPinActivity : AppCompatActivity() {
         continueButton.setOnClickListener {
             val pin = pinDigits.joinToString("") { it.text.toString() }
 
-            if (pin.length < 6) {
-                showError("Please enter all 6 digits")
+            if (pin.length < 4) {
+                showError("Please enter all 4 digits")
                 return@setOnClickListener
             }
 
@@ -244,6 +245,8 @@ class EnterMPinActivity : AppCompatActivity() {
         })
     }
 
+
+
     private fun animateToSuccessState() {
         // Fade out the PIN input layout
         val fadeOut = ObjectAnimator.ofFloat(findViewById(R.id.pinContainer), "alpha", 1f, 0f)
@@ -305,7 +308,7 @@ class EnterMPinActivity : AppCompatActivity() {
 
     private fun navigateToHomeScreen() {
         // In a real app, you would navigate to your home screen activity
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
 
         // Add a nice transition animation
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)

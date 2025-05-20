@@ -2,6 +2,7 @@ package com.example.bankingapp.classes
 
 import com.example.bankingapp.responses.AccountsDetailResponse
 import com.example.bankingapp.responses.LoginResponse
+import okhttp3.Cookie
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Field
@@ -19,6 +20,17 @@ class ApiServices {
             @Header("Cookie") cookie: String,
             @Field("mid") mid: String,
             @Field("password") password: String
+        ): Call<LoginResponse>
+    }
+
+    interface LoginWithMPinApiService {
+        @FormUrlEncoded
+        @POST("API/loginmpin")
+        fun loginWithMPin(
+            @Header("Authorization") authorization: String,
+            @Header("Cookie") cookie: String,
+            @Field("mpin") mPin: String,
+            @Field("mobileid") mobileId: String
         ): Call<LoginResponse>
     }
 

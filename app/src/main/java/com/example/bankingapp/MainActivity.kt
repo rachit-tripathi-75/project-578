@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
@@ -36,6 +37,7 @@ import com.example.bankingapp.activities.TransferMoneyActivity
 import com.example.bankingapp.activities.TwoWheelerLoanActivity
 import com.example.bankingapp.activities.UpiActivity
 import com.example.bankingapp.adapters.AccountInformationViewPagerAdapter
+import com.example.bankingapp.classes.PinCreationBottomSheet
 import com.example.bankingapp.databinding.ActivityMainBinding
 
 // home screen for User (Customer) App...............
@@ -98,6 +100,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        showPinCreationDialog()
 
 
         initializeViews()
@@ -130,6 +133,16 @@ class MainActivity : AppCompatActivity() {
 //                isScanQRVisible = true;
 //            }
 //        }
+
+        // Check if we should show the PIN creation dialog
+//        if (!PinCreationBottomSheet.shouldShowDialog(this)) {
+//        }
+    }
+
+    private fun showPinCreationDialog() {
+        val bottomSheet = PinCreationBottomSheet.newInstance()
+        bottomSheet.show(supportFragmentManager, "PinCreationBottomSheet")
+        Log.d("bottomSheetTag", "reached")
     }
 
     private fun slideDown() {
