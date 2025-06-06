@@ -276,8 +276,7 @@ class CreatePinFragment : Fragment() {
     }
 
     private fun addCompletionIndicator(editText: EditText) {
-        // In a real app, you would add a small indicator view next to the EditText
-        // For simplicity, we're just changing the background here
+
         editText.setBackgroundResource(R.drawable.pin_edit_text_background)
 
         // Add a small scale animation

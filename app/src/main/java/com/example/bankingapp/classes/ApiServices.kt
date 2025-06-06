@@ -1,11 +1,15 @@
 package com.example.bankingapp.classes
 
+import com.example.bankingapp.responses.AccountOverviewResponse
 import com.example.bankingapp.responses.AccountsDetailResponse
 import com.example.bankingapp.responses.CreateMPinResponse
 import com.example.bankingapp.responses.LoginResponse
+import com.example.bankingapp.responses.ShowAccountNumberResponse
+import com.example.bankingapp.responses.TypesOfAccountResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
@@ -51,6 +55,28 @@ class ApiServices {
             @Header("Cookie") cookie: String,
             @Field("memid") memId: String
         ): Call<AccountsDetailResponse>
+    }
+
+    interface AccountOverviewInformation {
+        @FormUrlEncoded
+        @POST("Api/search_by_acc_no")
+        fun getAccountInformation(
+            @Field("acc_no") accountNumber: String,
+            @Field("acc_type") accountType: String
+        ): Call<AccountOverviewResponse>
+    }
+
+    interface TypesOfAccount {
+        @GET("Api/type_of_account")
+        fun getTypesOfAccount() : Call<TypesOfAccountResponse>
+    }
+
+    interface ShowAccountNumber {
+        @FormUrlEncoded
+        @POST("Api/ShowAccountNo")
+        fun getAccountNumber(
+            @Field("Acctype") accountNumber: String,
+        ): Call<ShowAccountNumberResponse>
     }
 
 }

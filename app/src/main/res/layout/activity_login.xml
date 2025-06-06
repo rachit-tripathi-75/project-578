@@ -205,9 +205,9 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"
                         android:hint="Enter Password"
+                        android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:padding="16dp"
-                        android:imeOptions="actionDone"
                         android:textColorHint="@color/gray_400" />
 
                     <ImageButton
