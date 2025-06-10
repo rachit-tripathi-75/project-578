@@ -1,6 +1,7 @@
 package com.example.bankingapp.classes
 
 import com.example.bankingapp.responses.AccountOverviewResponse
+import com.example.bankingapp.responses.AccountStatementDetailResponse
 import com.example.bankingapp.responses.AccountsDetailResponse
 import com.example.bankingapp.responses.CreateMPinResponse
 import com.example.bankingapp.responses.LoginResponse
@@ -57,13 +58,24 @@ class ApiServices {
         ): Call<AccountsDetailResponse>
     }
 
-    interface AccountOverviewInformation {
+//    interface AccountOverviewInformation {
+//        @FormUrlEncoded
+//        @POST("Api/search_by_acc_no")
+//        fun getAccountInformation(
+//            @Field("acc_no") accountNumber: String,
+//            @Field("acc_type") accountType: String
+//        ): Call<AccountOverviewResponse>
+//    }
+
+    interface AccountStatementDetail {
         @FormUrlEncoded
-        @POST("Api/search_by_acc_no")
-        fun getAccountInformation(
-            @Field("acc_no") accountNumber: String,
-            @Field("acc_type") accountType: String
-        ): Call<AccountOverviewResponse>
+        @POST("Api/acc_statement_detail")
+        fun getAccountStatementDetail(
+            @Field("AccType") accountType: String,
+            @Field("Accno") accountNumber: String,
+            @Field("FDate") fromDate: String,
+            @Field("TDate") toDate: String
+        ): Call<AccountStatementDetailResponse>
     }
 
     interface TypesOfAccount {

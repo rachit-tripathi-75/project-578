@@ -41,12 +41,20 @@ object ApiClient {
             .create(ApiServices.CreateMPinApiService::class.java)
     }
 
-    val getAccountOverviewInformation: ApiServices.AccountOverviewInformation by lazy {
+//    val getAccountOverviewInformation: ApiServices.AccountOverviewInformation by lazy {
+//        Retrofit.Builder()
+//            .baseUrl(BASE_URL2)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//            .create(ApiServices.AccountOverviewInformation::class.java)
+//    }
+
+    val getAccountStatementDetail: ApiServices.AccountStatementDetail by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL2)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiServices.AccountOverviewInformation::class.java)
+            .create(ApiServices.AccountStatementDetail::class.java)
     }
 
     val getTypesOfAccount : ApiServices.TypesOfAccount by lazy {

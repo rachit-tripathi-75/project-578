@@ -1,8 +1,11 @@
 package com.example.bankingapp.activities
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -10,8 +13,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bankingapp.R
 import com.example.bankingapp.adapters.ShowAccountNumberAdapter
+import com.example.bankingapp.adapters.StatementAdapter
 import com.example.bankingapp.agent.networks.NetworkChangeReceiver
 import com.example.bankingapp.classes.ApiClient
 import com.example.bankingapp.classes.PrefsManager
@@ -20,6 +25,7 @@ import com.example.bankingapp.models.AccountDetailModel
 import com.example.bankingapp.models.AccountNumberModel
 import com.example.bankingapp.models.TypesOfAccountsModel
 import com.example.bankingapp.responses.AccountOverviewResponse
+import com.example.bankingapp.responses.AccountStatementDetailResponse
 import com.example.bankingapp.responses.AccountsDetailResponse
 import com.example.bankingapp.responses.ShowAccountNumberResponse
 import com.example.bankingapp.responses.TypesOfAccountResponse
@@ -37,7 +43,8 @@ class AccountOverviewActivity : AppCompatActivity() {
             override fun onNetworkConnected() {
                 binding.llNoInternetFound.visibility = View.GONE
                 binding.clAccountOverview.visibility = View.VISIBLE
-                fetchAssociatedAccountNumbers()
+//                fetchAssociatedAccountNumbers()
+                fetchAssociatedAccountTypes()
                 Log.d("networkInterceptorTAG", "inside onNetworkConnected()")
 
             }
@@ -56,6 +63,8 @@ class AccountOverviewActivity : AppCompatActivity() {
     private var accounts: MutableList<AccountDetailModel> = mutableListOf()
     private var accountTypes: MutableList<TypesOfAccountsModel> = mutableListOf();
     private var accountNumbersList: MutableList<AccountNumberModel> = mutableListOf();
+    private var selectedAccountTypeValue = ""
+    private var selectedAccountNumberValue = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -67,19 +76,48 @@ class AccountOverviewActivity : AppCompatActivity() {
             insets
         }
 
+        hideSystemBars()
         initialisers()
         listeners()
 
     }
 
+    private fun hideSystemBars() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            // Android 11 (API 30) and above
+//            window.setDecorFitsSystemWindows(false)
+//            window.insetsController?.let { controller ->
+//                // Hide both status bar and navigation bar
+//                controller.hide(WindowInsets.Type.systemBars())
+//
+//                // Optional: Make the system bars hide automatically
+//                // This is similar to IMMERSIVE_STICKY behavior
+//                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+//            }
+//        } else {
+//            // Fallback for older versions
+//            @Suppress("DEPRECATION")
+//            window.decorView.systemUiVisibility = (
+//                    android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+//                            or android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+//                            or android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                            or android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                            or android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                            or android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                    )
+//        }
+    }
+
     private fun initialisers() {
 //        fetchAssociatedAccountNumbers()
         fetchAssociatedAccountTypes()
+
         binding.actvShowAccountNumber.setOnItemClickListener { parent, view, position, id ->
-            val selectedItem = (parent.adapter as ShowAccountNumberAdapter).getItem(position)
-            Log.d("Selected", "Full Object: $selectedItem")
+            selectedAccountNumberValue = (parent.adapter as ShowAccountNumberAdapter).getItem(position).toString()
+            Log.d("selectedAccountNumberTAG", "Selected account number: $selectedAccountNumberValue")
             binding.cvAccountInformation.visibility = View.INVISIBLE
-            fetchInformation();
+            binding.progressBarGetResult.visibility = View.VISIBLE
+            fetchInformation(selectedAccountTypeValue, selectedAccountNumberValue);
         }
 
 
@@ -197,7 +235,7 @@ class AccountOverviewActivity : AppCompatActivity() {
                                     )
                                 )
                             }
-                            makeAccountNumberSpinner()
+                            makeAccountNumberSpinner() // list show hogi, jo bhi us particular accountType ke andar aate ho......
                         }
 
                     }
@@ -258,7 +296,7 @@ class AccountOverviewActivity : AppCompatActivity() {
                                     )
                                 )
                             }
-                            makeAccountTypeSpinner()
+                            makeAccountTypeSpinner() // response milne ke bad, isi ki help se list prepare hogi...
                         }
 
                     } else {
@@ -322,7 +360,7 @@ class AccountOverviewActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_item,
+            R.layout.custom_spinner_item,
             accountTypes.map { "${it.name}" }
         ).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -356,7 +394,9 @@ class AccountOverviewActivity : AppCompatActivity() {
 //                        fetchInformation();
                         val selectedAccountType = accountTypes[position]
                         val selectedId = selectedAccountType.id
-                        fetchShowAccountNumbers(selectedId)
+                        Log.d("selectedAccountTypeTAG", "Selected AccountTypeID: ${selectedId}");
+                        selectedAccountTypeValue = selectedId.toString()
+                        fetchShowAccountNumbers(selectedId) // fetch related accountNumber, based on the chosen accountType ID.........
                     }
                 }
 
@@ -366,62 +406,85 @@ class AccountOverviewActivity : AppCompatActivity() {
             }
     }
 
-    private fun fetchInformation() {
+    private fun fetchInformation(selectedAccountType: String, selectedAccountNumber: String) {
 
-        ApiClient.getAccountOverviewInformation.getAccountInformation(
-            "829ea51ccac87cfcc921cbf969e046b3fa7064c89bb7d1390b4bea9cc2195b2ad87e023e6a6b74db059eab54da001e0b7e8c079a694c98168b46fd5a1f00c34aWO_ALi2Tf2Vx5zPWfq7A2NIacH1GwyPynCCX9YXAA_4~",
-            "1",
-        ).enqueue(object : Callback<AccountOverviewResponse> {
+        ApiClient.getAccountStatementDetail.getAccountStatementDetail(
+            selectedAccountType,
+            selectedAccountNumber,
+            "2020-06-04",
+            "2025-06-04"
+        ).enqueue(object : Callback<AccountStatementDetailResponse> {
 
 
             override fun onResponse(
-                call: Call<AccountOverviewResponse?>,
-                response: Response<AccountOverviewResponse?>
+                call: Call<AccountStatementDetailResponse?>,
+                response: Response<AccountStatementDetailResponse?>
             ) {
-                val s: AccountOverviewResponse? = response.body();
+                val s: AccountStatementDetailResponse? = response.body();
                 Log.d("fetchInformationTAG", "Status: " + s!!.status);
                 val gson = Gson();
+                binding.progressBarGetResult.visibility = View.GONE
                 binding.cvAccountInformation.visibility = View.VISIBLE
-                Log.d("fetchInformationTAG", "Body: " + gson.toJson(s.data));
-                binding.tvAccountNumberValue.text = s.data.accNoInt
-                binding.tvTypeOfAccountValue.text = s.data.typeOfAcc
-                binding.tvMemIdValue.text = s.data.memId
-                binding.tvCifNoValue.text = s.data.cifNo
-                binding.tvNameValue.text = s.data.name
-                binding.tvFatherNameValue.text = s.data.father
-                binding.tvMobileNumberValue.text = s.data.mobile
-                binding.tvEmailValue.text = s.data.email
-                binding.tvPresentAddressValue.text = s.data.presentAddress
-                binding.tvPermanentAddressValue.text = s.data.permanentAddress
-                binding.tvPeriodValue.text = s.data.period
-                binding.tvEmiValue.text = s.data.emi
-                binding.tvMValueValue.text = s.data.mValue
-                binding.tvRate.text = s.data.rate
-                binding.tvMinimumBalanceValue.text = s.data.mbal
-                binding.tvMinimumBalanceChargeValue.text = s.data.mbalCharge
-                binding.tvRemarksValue.text = s.data.remarks
-                binding.tvNomineeValue.text = s.data.nominee
-                binding.tvNRelationValue.text = s.data.nRelation
-                binding.tvAgentValue.text = s.data.agent
-                binding.tvStatusValue.text = s.data.agent
-                binding.tvSanctionedLimitValue.text = s.data.sanctionedLimit
-                binding.tvSanctionedPeriodValue.text = s.data.sanctionedPeriod
-                binding.tvSanctionedDocumentValue.text = s.data.sDocument
-                binding.tvMDateValue.text = s.data.mDate
-                binding.tvDateNewValue.text = s.data.dateNew
-                binding.tvOtherInformationValue.text = s.data.otherInform
-                binding.tvIntrobyValue.text = s.data.introBy
-                binding.tvOperationModeValue.text = s.data.operationMode
-                binding.isSMSValue.text = s.data.isSMS
-                binding.isNBValue.text = s.data.isNB
-                binding.vAccountValue.text = s.data.vAccount
-                binding.cfTerminalIdValue.text = s.data.cfTerminalId
-                binding.tvSubenachValue.text = s.data.subEnach
-                binding.tvVAccountAubValue.text = s.data.vAccountAub
-                binding.cfSubscriptionIdValue.text = s.data.cfSubscriptionId
+                Log.d("fetchInformationTAG", "Body: " + gson.toJson(s.userDetail));
+
+                // filling up the tabular data.......
+                binding.tvApplicantName.text = s.userDetail.applicantName
+                binding.tvAccountNumber.text = s.userDetail.accountNumber
+                binding.tvBankName.text = s.userDetail.bankName
+                binding.tvMemberId.text = s.userDetail.memberId
+                binding.tvAccountType.text = s.userDetail.accountType
+                binding.tvAccountOpeningDate.text = s.userDetail.accountOpeningDate
+                binding.tvContactNo.text = s.userDetail.contactNo
+                binding.tvVirtualAccount.text = s.userDetail.virtualAccount
+                binding.tvFatherName.text = s.userDetail.fatherName
+                binding.tvIFSCCode.text = s.userDetail.ifscCode
+                binding.tvAddress.text = s.userDetail.address
+                binding.tvPrintDate.text = s.userDetail.printDate
+
+
+                binding.rvStatements.layoutManager = LinearLayoutManager(applicationContext)
+                val statementAdapter = StatementAdapter(s.statementData)
+                binding.rvStatements.adapter = statementAdapter
+//                binding.tvAccountNumberValue.text = s.data.accNoInt
+//                binding.tvTypeOfAccountValue.text = s.data.typeOfAcc
+//                binding.tvMemIdValue.text = s.data.memId
+//                binding.tvCifNoValue.text = s.data.cifNo
+//                binding.tvNameValue.text = s.data.name
+//                binding.tvFatherNameValue.text = s.data.father
+//                binding.tvMobileNumberValue.text = s.data.mobile
+//                binding.tvEmailValue.text = s.data.email
+//                binding.tvPresentAddressValue.text = s.data.presentAddress
+//                binding.tvPermanentAddressValue.text = s.data.permanentAddress
+//                binding.tvPeriodValue.text = s.data.period
+//                binding.tvEmiValue.text = s.data.emi
+//                binding.tvMValueValue.text = s.data.mValue
+//                binding.tvRate.text = s.data.rate
+//                binding.tvMinimumBalanceValue.text = s.data.mbal
+//                binding.tvMinimumBalanceChargeValue.text = s.data.mbalCharge
+//                binding.tvRemarksValue.text = s.data.remarks
+//                binding.tvNomineeValue.text = s.data.nominee
+//                binding.tvNRelationValue.text = s.data.nRelation
+//                binding.tvAgentValue.text = s.data.agent
+//                binding.tvStatusValue.text = s.data.agent
+//                binding.tvSanctionedLimitValue.text = s.data.sanctionedLimit
+//                binding.tvSanctionedPeriodValue.text = s.data.sanctionedPeriod
+//                binding.tvSanctionedDocumentValue.text = s.data.sDocument
+//                binding.tvMDateValue.text = s.data.mDate
+//                binding.tvDateNewValue.text = s.data.dateNew
+//                binding.tvOtherInformationValue.text = s.data.otherInform
+//                binding.tvIntrobyValue.text = s.data.introBy
+//                binding.tvOperationModeValue.text = s.data.operationMode
+//                binding.isSMSValue.text = s.data.isSMS
+//                binding.isNBValue.text = s.data.isNB
+//                binding.vAccountValue.text = s.data.vAccount
+//                binding.cfTerminalIdValue.text = s.data.cfTerminalId
+//                binding.tvSubenachValue.text = s.data.subEnach
+//                binding.tvVAccountAubValue.text = s.data.vAccountAub
+//                binding.cfSubscriptionIdValue.text = s.data.cfSubscriptionId
             }
 
-            override fun onFailure(call: Call<AccountOverviewResponse?>, t: Throwable) {
+            override fun onFailure(call: Call<AccountStatementDetailResponse?>, t: Throwable) {
+                binding.progressBarGetResult.visibility = View.GONE
                 Log.d("fetchInformationTAG", t.message.toString());
             }
         })

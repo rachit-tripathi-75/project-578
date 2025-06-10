@@ -8,4 +8,29 @@
     <style name="Theme.BankingApp" parent="Base.Theme.BankingApp" />
 
 
+
+        <style name="TableRowStyle">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:orientation">horizontal</item>
+            <item name="android:background">@drawable/cell_border_bottom_and_right</item>
+        </style>
+
+        <style name="TableLabelStyle">
+            <item name="android:layout_width">150dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:padding">8dp</item>
+            <item name="android:textStyle">bold</item>
+            <item name="android:background">@drawable/cell_border_right</item>
+        </style>
+
+        <style name="TableValueStyle">
+            <item name="android:layout_width">200dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:padding">8dp</item>
+        </style>
+
+
+
+
 </resources>

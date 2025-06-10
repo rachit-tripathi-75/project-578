@@ -22,7 +22,6 @@
             android:orientation="horizontal">
 
 
-
             <ImageView
                 android:id="@+id/backButton"
                 android:layout_width="24dp"
@@ -124,7 +123,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <Spinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/spinnerAccountType"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
@@ -146,6 +145,7 @@
                 android:layout_marginEnd="16dp"
                 android:translationY="40dp"
                 app:cardCornerRadius="8dp"
+                android:visibility="visible"
                 app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -172,6 +172,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:dropDownHeight="wrap_content"
+                        android:background="@drawable/rounded_grey_background"
                         android:inputType="text"
                         android:padding="8dp" />
 
@@ -187,876 +188,1188 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvAccountNumber">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvAccountInformation"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBarGetResult"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:translationY="60dp"
-                android:visibility="gone"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
+                android:layout_marginBottom="@dimen/_50sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvAccountNumber">
 
-                <ScrollView
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvAccountInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="0dp"
+                    android:translationY="60dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:paddingStart="@dimen/_16sdp"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_16sdp"
+                        android:paddingBottom="@dimen/_16sdp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:text="Account Information"
-                            android:textColor="@color/text_dark"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                        <!--                    <TextView-->
+                        <!--                        android:id="@+id/tvApplicantName"-->
+                        <!--                        android:layout_width="match_parent"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_marginBottom="4dp"-->
+                        <!--                        android:text="Applicant Name: "-->
+                        <!--                        android:textSize="18sp"-->
+                        <!--                        android:textStyle="bold" />-->
+
+                        <!--                    <TextView-->
+                        <!--                        android:id="@+id/tvAccountNumber"-->
+                        <!--                        android:layout_width="match_parent"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_marginBottom="4dp"-->
+                        <!--                        android:text="Account Number: " />-->
+
+                        <!--                    <TextView-->
+                        <!--                        android:id="@+id/tvBankName"-->
+                        <!--                        android:layout_width="match_parent"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_marginBottom="16dp"-->
+                        <!--                        android:text="Bank Name: " />-->
+
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fillViewport="true"
+                            android:padding="16dp">
+
+                            <HorizontalScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/table_overall_border"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="16dp"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Member Id :" />
+
+                                            <TextView
+                                                android:id="@+id/tvMemberId"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Account Type :" />
+
+                                            <TextView
+                                                android:id="@+id/tvAccountType"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Account Number :" />
+
+                                            <TextView
+                                                android:id="@+id/tvAccountNumber"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Account Opening Date :" />
+
+                                            <TextView
+                                                android:id="@+id/tvAccountOpeningDate"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Applicant Name :" />
+
+                                            <TextView
+                                                android:id="@+id/tvApplicantName"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Contact No. :" />
+
+                                            <TextView
+                                                android:id="@+id/tvContactNo"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Virtual Account :" />
+
+                                            <TextView
+                                                android:id="@+id/tvVirtualAccount"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Father Name :" />
+
+                                            <TextView
+                                                android:id="@+id/tvFatherName"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="IFSC Code :" />
+
+                                            <TextView
+                                                android:id="@+id/tvIFSCCode"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Address :" />
+
+                                            <TextView
+                                                android:id="@+id/tvAddress"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Bank Name :" />
+
+                                            <TextView
+                                                android:id="@+id/tvBankName"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                        <LinearLayout style="@style/TableRowStyle">
+
+                                            <TextView
+                                                style="@style/TableLabelStyle"
+                                                android:text="Print Date :" />
+
+                                            <TextView
+                                                android:id="@+id/tvPrintDate"
+                                                style="@style/TableValueStyle" />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </HorizontalScrollView>
+                        </ScrollView>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
+                            android:background="#DDDDDD"
+                            android:orientation="horizontal"
+                            android:padding="8dp"
+                            android:textStyle="bold">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="S.No."
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Account Number"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
+                                android:gravity="center"
+                                android:text="Date"
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/tvAccountNumberValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Description"
+                                android:textStyle="bold" />
+
+                            <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Account Number-->
-                        <LinearLayout
+                                android:gravity="end"
+                                android:text="Debit"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Credit"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Balance"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:text="Dr/Cr"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvStatements"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Type of Account"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvTypeOfAccountValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Type of account -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Mem ID"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvMemIdValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- MemId -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="CIF"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvCifNoValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- CIF No -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Name"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvNameValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Name -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Father's name"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvFatherNameValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Father -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Mobile Number"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvMobileNumberValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Mobile -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Email"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvEmailValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Email -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Present Address"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvPresentAddressValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Present Address -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Permanent Address"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvPermanentAddressValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Permanent Address -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Period"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvPeriodValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Period -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="EMI"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvEmiValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- EMI -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="MValue"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvMValueValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- MValue -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Rate"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvRate"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Rate -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Minimum Balance"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvMinimumBalanceValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Minimum Balance -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Minimum Balance Charge"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvMinimumBalanceChargeValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Minimum Balance Charge -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Remarks"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvRemarksValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Remarks -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Nominee"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvNomineeValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Nominee -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="NRelation"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvNRelationValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- NRelation -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Agent"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvAgentValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Agent -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Status"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvStatusValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- status -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Sanctioned Limit"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvSanctionedLimitValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- SANCTIONED LIMIT -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Sanctioned Period"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvSanctionedPeriodValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- SANCTIONED Period -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Sanctioned Document"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvSanctionedDocumentValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- Sanctioned Document -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="mDate"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvMDateValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- mDate -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Date New"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvDateNewValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- datenew -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Other Information"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvOtherInformationValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- otherinform -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Introby"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvIntrobyValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- introby -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Operation Mode"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvOperationModeValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- operation mode -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="is SMS?"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/isSMSValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- IsSMS -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="is NB?"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/isNBValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- IsNB -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="V Account Value"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/vAccountValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- VAccount -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="CF Terminal ID"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/cfTerminalIdValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- cf_terminal_id -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Subenach"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvSubenachValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- subenach -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="V Account Aub"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvVAccountAubValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- VAccountaub -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="CF Subscription ID"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/cfSubscriptionIdValue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
-                        </LinearLayout> <!-- cf_subscription_id -->
+                            android:layout_height="match_parent"
+                            android:scrollbars="vertical" />
 
                     </LinearLayout>
 
-                </ScrollView>
+
+                    <!--                <ScrollView-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content">-->
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:orientation="vertical"-->
+                    <!--                        android:padding="16dp">-->
+
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="16dp"-->
+                    <!--                            android:text="Account Information"-->
+                    <!--                            android:textColor="@color/text_dark"-->
+                    <!--                            android:textSize="16sp"-->
+                    <!--                            android:textStyle="bold" />-->
+
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Account Number"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvAccountNumberValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Account Number&ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Type of Account"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvTypeOfAccountValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Type of account &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Mem ID"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvMemIdValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; MemId &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="CIF"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvCifNoValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; CIF No &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Name"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvNameValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Name &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Father's name"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvFatherNameValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Father &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Mobile Number"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvMobileNumberValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Mobile &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Email"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvEmailValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Email &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Present Address"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvPresentAddressValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Present Address &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Permanent Address"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvPermanentAddressValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Permanent Address &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Period"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvPeriodValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Period &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="EMI"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvEmiValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; EMI &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="MValue"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvMValueValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; MValue &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Rate"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvRate"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Rate &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Minimum Balance"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvMinimumBalanceValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Minimum Balance &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Minimum Balance Charge"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvMinimumBalanceChargeValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Minimum Balance Charge &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Remarks"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvRemarksValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Remarks &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Nominee"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvNomineeValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Nominee &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="NRelation"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvNRelationValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; NRelation &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Agent"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvAgentValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Agent &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Status"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvStatusValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; status &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Sanctioned Limit"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvSanctionedLimitValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; SANCTIONED LIMIT &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Sanctioned Period"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvSanctionedPeriodValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; SANCTIONED Period &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Sanctioned Document"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvSanctionedDocumentValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; Sanctioned Document &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="mDate"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvMDateValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; mDate &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Date New"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvDateNewValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; datenew &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Other Information"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvOtherInformationValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; otherinform &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Introby"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvIntrobyValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; introby &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Operation Mode"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvOperationModeValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; operation mode &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="is SMS?"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/isSMSValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; IsSMS &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="is NB?"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/isNBValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; IsNB &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="V Account Value"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/vAccountValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; VAccount &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="CF Terminal ID"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/cfTerminalIdValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; cf_terminal_id &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="Subenach"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvSubenachValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; subenach &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="V Account Aub"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/tvVAccountAubValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; VAccountaub &ndash;&gt;-->
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginBottom="12dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text="CF Subscription ID"-->
+                    <!--                                android:textColor="@color/text_light"-->
+                    <!--                                android:textSize="14sp" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/cfSubscriptionIdValue"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:text=""-->
+                    <!--                                android:textColor="@color/text_dark"-->
+                    <!--                                android:textSize="14sp" />-->
+                    <!--                        </LinearLayout> &lt;!&ndash; cf_subscription_id &ndash;&gt;-->
+
+                    <!--                    </LinearLayout>-->
+
+                    <!--                </ScrollView>-->
 
 
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
+
+            </ScrollView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
