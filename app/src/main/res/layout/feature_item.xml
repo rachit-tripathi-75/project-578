@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:cardCornerRadius="32dp"
+        android:backgroundTint="@color/light_blue_background"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/ivFeatureIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_zap"
+            android:layout_gravity="center"
+            app:tint="@color/primary_blue" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvFeatureTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instant Approval"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvFeatureDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get loan approval in just 24 hours with minimal documentation"
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary"
+        android:textAlignment="center" />
+
+</LinearLayout>

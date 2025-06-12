@@ -22,6 +22,12 @@
         android:theme="@style/Theme.BankingApp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.PaymentSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PaymentMethodActivity"
+            android:exported="false" />
+        <activity
             android:name=".agent.activities.CreateMPinActivity"
             android:exported="false" />
         <activity
@@ -74,6 +80,9 @@
             android:exported="false" />
         <activity
             android:name=".activities.TwoWheelerLoanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LoanAndCardOffers"
             android:exported="false" />
         <activity
             android:name=".activities.ApplyForCreditCardActivity"

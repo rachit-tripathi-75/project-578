@@ -327,7 +327,7 @@
 
                     <!-- Service 4: Pay Day Loan -->
                     <include
-                        android:id="@+id/PayDayLoan"
+                        android:id="@+id/payDayLoan"
                         layout="@layout/item_service"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

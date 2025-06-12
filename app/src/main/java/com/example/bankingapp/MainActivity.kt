@@ -22,11 +22,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bankingapp.activities.AccountActivity
 import com.example.bankingapp.activities.AccountOverviewActivity
+import com.example.bankingapp.activities.ApplyForCreditCardActivity
 import com.example.bankingapp.activities.BillPayAndRechargeActivity
+import com.example.bankingapp.activities.FasTagActivity
 import com.example.bankingapp.activities.GoldLoanActivity
 import com.example.bankingapp.activities.HomeLoanActivity
+import com.example.bankingapp.activities.InvestmentAccountActivity
+import com.example.bankingapp.activities.LoanAndCardOffers
 import com.example.bankingapp.activities.MyPassbookActivity
 import com.example.bankingapp.activities.OneTimeTransferActivity
+import com.example.bankingapp.activities.PayDayLoanActivity
 import com.example.bankingapp.activities.PayOverdueEmiActivity
 import com.example.bankingapp.activities.PayYourContactActivity
 import com.example.bankingapp.activities.PersonalLoanActivity
@@ -229,9 +234,6 @@ class MainActivity : AppCompatActivity() {
         binding.payOverdueEMI.llService.setOnClickListener {
             startActivity(Intent(this@MainActivity, PayOverdueEmiActivity::class.java), options.toBundle())
         }
-        binding.twoWheelerLoan.llService.setOnClickListener {
-            startActivity(Intent(this@MainActivity, TwoWheelerLoanActivity::class.java), options.toBundle())
-        }
         binding.menuIcon.setOnClickListener {
             startActivity(Intent(this@MainActivity, ProfileScreenActivity::class.java), options.toBundle())
         }
@@ -247,6 +249,34 @@ class MainActivity : AppCompatActivity() {
         binding.llScanQR.setOnClickListener {
             startActivity(Intent(this@MainActivity, ScanQrActivity::class.java), options.toBundle())
         }
+        binding.loanAndCardOffers.llService.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LoanAndCardOffers::class.java), options.toBundle())
+        }
+
+        binding.payDayLoan.llService.setOnClickListener {
+            startActivity(Intent(this@MainActivity, PayDayLoanActivity::class.java), options.toBundle())
+        }
+
+        binding.payOverdueEMI.llService.setOnClickListener {
+            startActivity(Intent(this@MainActivity, PayOverdueEmiActivity::class.java), options.toBundle())
+        }
+
+        binding.FASTag.llService.setOnClickListener {
+            startActivity(Intent(this@MainActivity, FasTagActivity::class.java), options.toBundle())
+        }
+
+        binding.investmentAccount.llService.setOnClickListener {
+            startActivity(Intent(this@MainActivity, InvestmentAccountActivity::class.java), options.toBundle())
+        }
+
+        binding.twoWheelerLoan.llService.setOnClickListener {
+            startActivity(Intent(this@MainActivity, TwoWheelerLoanActivity::class.java), options.toBundle())
+        }
+
+        binding.ApplyForCreditCard.llService.setOnClickListener {
+            startActivity(Intent(this@MainActivity, ApplyForCreditCardActivity::class.java), options.toBundle())
+        }
+
     }
 
 
