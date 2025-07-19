@@ -138,6 +138,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Banking"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 
@@ -198,6 +199,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="For Agent"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 
@@ -258,6 +260,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Pay &amp; Transfer"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 
@@ -344,6 +347,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Loans"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 
@@ -431,6 +435,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Apply Now"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 

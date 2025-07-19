@@ -31,10 +31,17 @@ class FasTagActivity : AppCompatActivity() {
             insets
         }
 
+        listeners()
         setupViews()
         setupRecyclerView()
         setupClickListeners()
 
+    }
+
+    private fun listeners() {
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
 

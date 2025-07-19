@@ -40,11 +40,18 @@ class HomeLoanActivity : AppCompatActivity() {
             insets
         }
 
+        listeners()
         setupSeekBars()
         setupTabs()
         setupClickListeners()
         calculateEMI()
 
+    }
+
+    private fun listeners() {
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
 

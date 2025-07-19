@@ -8,7 +8,7 @@ import com.example.bankingapp.fragments.UserLoginFragment
 
 
 
-class LoginPageAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class   LoginPageAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int  = 2
 
     override fun createFragment(position: Int): Fragment {

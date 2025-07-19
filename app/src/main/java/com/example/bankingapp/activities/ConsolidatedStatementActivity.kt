@@ -45,7 +45,9 @@ class ConsolidatedStatementActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupToolbar() {

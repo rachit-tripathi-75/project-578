@@ -28,10 +28,17 @@ class TransferMoneyActivity : AppCompatActivity() {
             insets
         }
 
+        listeners()
         setupToolbar()
         setupRecyclerView()
         setupClickListeners()
 
+    }
+
+    private fun listeners() {
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupToolbar() {

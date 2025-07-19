@@ -37,6 +37,11 @@ class StatementActivity : AppCompatActivity() {
         binding.cvConsolidatedStatement.setOnClickListener {
             startActivity(Intent(this@StatementActivity, ConsolidatedStatementActivity::class.java))
         }
+
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
+
     }
 
     override fun onBackPressed() {

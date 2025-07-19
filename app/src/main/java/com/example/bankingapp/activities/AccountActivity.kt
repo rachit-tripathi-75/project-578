@@ -47,7 +47,9 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun applyAnimations() {

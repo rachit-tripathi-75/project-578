@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:paddingBottom="32dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +15,8 @@
         android:clipToPadding="false"
         android:elevation="4dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:paddingBottom="32dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,6 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Enter name" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,6 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Enter Co-Applicant's Father/Husband Name" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,6 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="dd-mm-yyyy" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,6 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Address" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,6 +130,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="City" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,6 +146,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Pin" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,6 +162,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Contact" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -162,6 +178,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="E-Mail" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -204,6 +222,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Period of Stay" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -218,6 +238,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Enter PAN Number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -232,13 +254,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#1976D2"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Enter Monthly Income" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:orientation="vertical">
 
             <RadioButton
@@ -286,12 +310,17 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/submitButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="#4CAF50"
+            android:minHeight="48dp"
+            android:visibility="gone"
             android:text="Submit"
             android:textColor="@android:color/white"
+            android:textSize="16sp"
             app:cornerRadius="8dp" />
 
     </LinearLayout>

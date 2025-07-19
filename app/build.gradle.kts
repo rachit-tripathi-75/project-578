@@ -69,8 +69,16 @@ dependencies {
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
-    implementation ("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
+    // Existing dependencies...
+
+    // ML Kit for barcode scanning
+    implementation("com.google.mlkit:barcode-scanning:17.2.0")
+
+    // ZXing for QR code generation
+    implementation("com.google.zxing:core:3.5.1")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
 
 }

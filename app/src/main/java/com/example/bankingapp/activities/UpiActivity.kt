@@ -28,9 +28,17 @@ class UpiActivity : AppCompatActivity() {
             insets
         }
 
+
+        listeners()
         setupToolbar()
         setupRecyclerView()
 
+    }
+
+    private fun listeners() {
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupToolbar() {
